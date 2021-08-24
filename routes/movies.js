@@ -13,5 +13,15 @@ Movie.find()
     });
 })
 
-router.get("/:id", (req, res, next) => {})
+router.get("/:id", (req, res, next) => {
+    const {id} = req.params;
+    Movie.findById(id)
+    .then((movie) => {
+        console.log("Here is your movie", movie)
+        res.render("movies/details", {movie})
+    })
+     .catch((err) => {
+      console.log(err);
+    });
+})
 module.exports = router;
